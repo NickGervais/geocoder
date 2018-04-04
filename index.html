@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Geocoding service</title>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="header">
+            <h1 class="title">Welcome to the GeoLocator</h1>
+            <h2 class="title">Enter an address to get started</h2>
+            <div id="floating-panel">
+                <input id="address" type="textbox" value="Green Bay" placeholder="Enter Address">
+                <input id="submit" type="button" value="Geocode">
+            </div>
+        </div>
+        <div id="map"></div>
+        <div id="infowindow-content">
+            <span id="title" style="font-weight:bold;"></span><br>
+            LATITUDE: <span id="lat"></span><br>
+            LONGITUDE: <span id="lng"></span>
+        </div>
+        <script src='script.js'></script>
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgbiieeN_33fuQvXsnre53AiQ-rfN1BiU&callback=initMap">
+        </script>
+    </body>
+</html>
