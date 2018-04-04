@@ -25,29 +25,20 @@ response = urllib.request.urlopen(req)
 # now turn this response into a json object using the json library
 json = JSON.loads(response.read())
 
-## First Issue I ran into ##
-# ran into issues with the geocoder returning weird latitude and longitude cordinates 
-# this occured when you only search for a city and not a full address
-# work around for this that I found was to change the 'key' parameter in the url from '+CA&key=' to '+USA&key='
-# this puts the searched city or address in the reference of the whole USA instead of just California
-
-
+# Checks to make sure the response data is good
 if json['status'] == 'OK':
+    # grabs the place id
     place_id = json['results'][0]['place_id']
+    # grabs the latitude value
     lat = json['results'][0]['geometry']['location']['lat']
+    # and grabs the longitude value
     lng = json['results'][0]['geometry']['location']['lng']
     
+    # Now print out the expected output
     print(search,'\n')
-    
     print('ID: ', place_id, '\n')
     print('Latitude: ', lat, '\n')
     print('Longitude: ', lng, '\n')
 else:
+    # Print out the status if the response data was not OK
     print(json['status'])
-
-## Second Issue I ran into ##
-# when trying to extract the place id, latitude, and longitude from the recieved json data,
-# I was trying to get it by doing json['results']['place_id'],
-# however, I did not realize that the 'results' object within the json was an array
-# the solution for this is to instead extract it  by doing json['results'][0]['place_id']
-# which grabs the first index of results, which seems to be the important index with all the information in it.
