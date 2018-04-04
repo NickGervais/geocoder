@@ -4,12 +4,17 @@ import urllib
 # this is my registered api key for google maps I recieved from Google
 apiKey = "AIzaSyBdHvCMgUN-3Oy7HdkzW3AguKBDpuodSYw"
 
+# this urlQuery function will take in city or address as a string and build the url endpoint.
 def urlQuery(city):
     url = "https://maps.googleapis.com/maps/api/geocode/json?address="
+    # split the passed in string on whitespaces
     elements = city.split(' ')
+    # know iterate through the elements and add a '+' between them.
     for element in elements:
         url += '+' + element
+    # at the end we add our key parameter to the url
     url += ",+USA&key=" + apiKey
+    # now we return the built endpoint url.
     return url
 
 #have the user enter in the city they want to search
